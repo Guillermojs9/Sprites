@@ -9,11 +9,12 @@ const CustomSprite = () => {
     useEffect(() => {
         if (spriteRef.current[0] != null) {
             spriteRef.current[0].play({
-                type: 'right',
-                fps: 20,
+                type: 'back',
+                fps: 18,
                 loop: true
             });
         }
+
         Animated.loop(
             Animated.sequence(
                 [
@@ -52,7 +53,7 @@ const CustomSprite = () => {
     }
 
     return (
-        <><Animated.View
+        <Animated.View
             style={{
                 transform: [{ translateY: positionAnim.y }, { translateX: positionAnim.x }]
             }}
@@ -60,20 +61,16 @@ const CustomSprite = () => {
             <Sprites
                 ref={(ref) => spriteRef.current.push(ref)}
                 source={require('../assets/bicho_verde/bicho_sprite.png')}
+                //source={require('../assets/bicho_verde/tamagot1.jpg')}
                 columns={12}
                 rows={4}
                 animations={{
                     right: { row: 0, startFrame: 0, endFrame: 11 },
-                    front: { row: 1, startFrame: 12, endFrame: 23 },
-                    left: { row: 2, startFrame: 24, endFrame: 35 },
-                    back: { row: 3, startFrame: 36, endFrame: 47 },
+                    left: { row: 1, startFrame: 0, endFrame: 11 },
+                    front: { row: 2, startFrame: 0, endFrame: 11 },
+                    back: { row: 3, startFrame: 0, endFrame: 11 },
                 }} />
-        </Animated.View><Button
-                onPress={mover}
-                title="Learn More"
-                color="#841584"
-                accessibilityLabel="Learn more about this purple button"
-            /></>
+        </Animated.View>
     )
 }
 
