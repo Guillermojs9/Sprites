@@ -9,23 +9,42 @@ const CustomSprite = () => {
     useEffect(() => {
         if (spriteRef.current[0] != null) {
             spriteRef.current[0].play({
-                type: 'front',
-                fps: 12,
+                type: 'right',
+                fps: 20,
                 loop: true
             });
         }
-        Animated.timing(positionAnim.y, {
-            toValue: 500,
-            easing: Easing.ease,
-            duration: 5000,
-            useNativeDriver: true,
-        }).start();
-        Animated.timing(positionAnim.x, {
-            toValue: 270,
-            easing: Easing.ease,
-            duration: 5000,
-            useNativeDriver: true,
-        }).start();
+        Animated.loop(
+            Animated.sequence(
+                [
+                    Animated.timing(positionAnim.y, {
+                        toValue: 500,
+                        easing: Easing.ease,
+                        duration: 2000,
+                        useNativeDriver: true,
+                    }),
+                    Animated.timing(positionAnim.x, {
+                        toValue: 270,
+                        easing: Easing.ease,
+                        duration: 2000,
+                        useNativeDriver: true,
+                    }),
+                    Animated.timing(positionAnim.y, {
+                        toValue: 0,
+                        easing: Easing.ease,
+                        duration: 2000,
+                        useNativeDriver: true,
+                    }),
+                    Animated.timing(positionAnim.x, {
+                        toValue: 0,
+                        easing: Easing.ease,
+                        duration: 2000,
+                        useNativeDriver: true,
+                    }),
+                ]
+            )
+        ).start();
+
     }, [])
 
     function mover() {
